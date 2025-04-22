@@ -2,6 +2,14 @@
 
 # YAK Pro - Php Obfuscator
 
+## Custom changes from author (RiskyWorks):
+* Handling of **php-doc-comments**: parameter `preserve_doc_comments=true` will keep them in obfuscated source code (can be handy for libs and phpstan combination)
+* Set `comment_intro=true` tor remove leading comment about `Obfuscated with YAK Pro bla-bla-bla`
+
+Down below goes original readme...
+
+----
+
 **YAK Pro** stands for **Y**et **A**nother **K**iller **Pro**duct.
 
 Free, Open Source, Published under the MIT License.
