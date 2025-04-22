@@ -18,6 +18,35 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
     private $current_class_name             = null;
     private $is_in_class_const_definition   = false;
 
+    // Add this method to preserve PHPDoc comments
+    private function preserve_doc_comment(PhpParser\Node $node)
+    {
+        // Comments are available as attributes
+        if ($node->getAttribute('comments')) {
+            echo "found comments\n";
+            foreach ($node->getAttribute('comments') as $comment) {
+                if ($comment instanceof PhpParser\Comment\Doc) {
+                    echo "found doc comment\n";
+                    $node->setAttribute('preservedDocComment', $comment->getText());
+                    break; // Just keep the first doc comment
+                }
+            }
+        }
+    }
+
+    // Add this method to restore PHPDoc comments
+    private function restore_doc_comment(PhpParser\Node $node)
+    {
+        if ($node->getAttribute('preservedDocComment')) {
+            $docComment = new PhpParser\Comment\Doc(
+                $node->getAttribute('preservedDocComment')
+            );
+            
+            // Add back to comments array
+            $node->setAttribute('comments', $docComment);
+        }
+    }
+
     private function shuffle_stmts(PhpParser\Node &$node)
     {
         global $conf;
@@ -60,6 +89,11 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
     {
         global $conf;
         global $t_scrambler;
+
+        // if ($conf->preserve_doc_comments) {
+        //     echo "preserve_doc_comments\n";
+        //     $this->preserve_doc_comment($node);
+        // }
 
         if (count($this->t_node_stack))
         {
@@ -1119,6 +1153,11 @@ class MyNodeVisitor extends PhpParser\NodeVisitorAbstract       // all parsing a
                 }
             }
         }
+
+        // if($node_modified) {
+        //     $this->restore_doc_comment($node);
+        // }
+
         array_pop($this->t_node_stack);
         if ($node_modified) return $node;
     }

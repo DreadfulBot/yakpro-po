@@ -83,8 +83,8 @@ $conf->confirm                          = true;         // rfu : will answer Y o
 $conf->silent                           = false;        // display or not Information level messages.
 
 
-$conf->source_directory                 = null;         // self explanatory
-$conf->target_directory                 = null;         // self explanatory
+$conf->source_directory                 = '/Users/riskyworks/Documents/web/game-codes/libs/wp-illuminate/src/Models';         // self explanatory
+$conf->target_directory                 = 'compiled';         // self explanatory
 
 $conf->t_keep                           = null;         // array of directory or file pathnames, to keep 'as is' (i.e. not obfuscate.)
 $conf->t_skip                           = null;         // array of directory or file pathnames, to skip when exploring source tree structure ... they will not be on target!
@@ -95,7 +95,7 @@ $conf->follow_symlinks                  = false;        // WARNING: setting it t
                                                         // WARNING: if there is a loop of links,  $conf->max_nested_directory can be created...
 
 $conf->user_comment                     = null;         // user comment to insert inside each obfuscated file
-$conf->preserve_doc_comments            = false;        // keep php doc comments
+$conf->preserve_doc_comments            = true;        // keep php doc comments
 $conf->comment_intro                    = false;         // show YAK PRO OBF comment intro on the top of a file
 
 $conf->extract_comment_from_line        = null;         // when both 2 are set, each obfuscated file will contain an extract of the corresponding source file,

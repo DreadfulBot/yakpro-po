@@ -96,6 +96,8 @@ class Config
                                                             // WARNING: if there is a loop of links,  $conf->max_nested_directory can be created...
 
     public $user_comment                    = null;         // user comment to insert inside each obfuscated file
+    public $comment_intro                   = false;         // show YAK PRO OBF comment intro on the top of a file
+    public $preserve_doc_comments           = false;        // keep php doc comments
 
     public $extract_comment_from_line       = null;         // when both 2 are set, each obfuscated file will contain an extract of the corresponding source file,
     public $extract_comment_to_line         = null;         // starting from extract_comment_from_line number, and endng at extract_comment_to_line line number.
