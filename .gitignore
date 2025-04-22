@@ -10,3 +10,4 @@ old/*
 run_tests.php
 compiled
 .vscode
+yakpro-po-test*.cnf
